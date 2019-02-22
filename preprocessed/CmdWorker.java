@@ -47,12 +47,12 @@ final class Key {
 }
 
 public class CmdWorker {
-    private Map<String, Key> cmdMap;
-    private PriorityQueue<City> priorityQueue;
-    private Date initDate;
-    private Date lastChangeDate;
-    private final String CMD_NOT_FOUND = "command not found";
-    private final String VOID_STR = "void";
+    protected Map<String, Key> cmdMap;
+    protected PriorityQueue<City> priorityQueue;
+    protected Date initDate;
+    protected Date lastChangeDate;
+    protected final String CMD_NOT_FOUND = "command not found";
+    protected final String VOID_STR = "void";
 
     {
         initDate = new Date();
@@ -140,7 +140,7 @@ public class CmdWorker {
         }
     }
 
-    private City processInput(String jsonInput) {
+    protected City processInput(String jsonInput) {
         City city = null;
         String name;
         Integer size;

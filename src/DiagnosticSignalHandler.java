@@ -4,6 +4,8 @@ import sun.misc.SignalHandler;
 #define println(args) System.out.println(args)
 
 public class DiagnosticSignalHandler implements SignalHandler {
+    protected SignalHandler oldHandler;
+    protected SignalHandler handler;
     // Static method to install the signal handler
     public static void install(String signalName, SignalHandler handler) {
         Signal signal = new Signal(signalName);
@@ -12,16 +14,14 @@ public class DiagnosticSignalHandler implements SignalHandler {
         diagnosticSignalHandler.setHandler(handler);
         diagnosticSignalHandler.setOldHandler(oldHandler);
     }
-    private SignalHandler oldHandler;
-    private SignalHandler handler;
 
-    private DiagnosticSignalHandler() {}
+    protected DiagnosticSignalHandler() {}
 
-    private void setOldHandler(SignalHandler oldHandler) {
+    protected void setOldHandler(SignalHandler oldHandler) {
         this.oldHandler = oldHandler;
     }
 
-    private void setHandler(SignalHandler handler) {
+    protected void setHandler(SignalHandler handler) {
         this.handler = handler;
     }
 

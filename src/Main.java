@@ -6,8 +6,8 @@ import sun.misc.SignalHandler;
 #define print(args) System.out.print(args)
 
 public class Main {
-    private static String filename;
-    private static CmdWorker worker;
+    protected static String filename;
+    protected static CmdWorker worker;
 
     static {
         initSignalHandlers();
