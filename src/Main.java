@@ -13,7 +13,7 @@ public class Main {
         initSignalHandlers();
     }
 
-    public static void initSignalHandlers() {
+    protected static void initSignalHandlers() {
         SignalHandler signalHandler = new SignalHandler() {
             @Override
             public void handle(Signal sig) {
@@ -27,16 +27,16 @@ public class Main {
         DiagnosticSignalHandler.install("TSTP", signalHandler);
     }
 
-    public static void release() {
+    protected static void release() {
         worker.printToFile(filename);
         System.exit(0);
     }
 
-    public static void load() {
+    protected static void load() {
         worker.readFromFile(filename);
     }
 
-    public static void handling() throws IOException {
+    protected static void handling() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         while (true) {

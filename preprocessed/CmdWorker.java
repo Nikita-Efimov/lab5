@@ -145,6 +145,13 @@ public class CmdWorker {
         String name;
         Integer size;
 
+        // System.out.println(jsonInput.indexOf('}'));
+        // System.out.println(jsonInput.length());
+        if (jsonInput.indexOf('}') < jsonInput.length() - 1) {
+            System.out.println("uncorrect command");
+            return city;
+        }
+
         try {
             JSONObject obj = new JSONObject(jsonInput);
 
@@ -173,11 +180,13 @@ public class CmdWorker {
     public void doCmd(String cmd) {
         int indexOfSpace = cmd.indexOf(' ');
         indexOfSpace = indexOfSpace == -1 ? cmd.length() : indexOfSpace;
-        String[] splittedCmd = {cmd.substring(0, indexOfSpace), indexOfSpace != cmd.length() ? cmd.substring(indexOfSpace + 1, cmd.length()) : VOID_STR};
+        String[] splittedCmd = {cmd.substring(0, indexOfSpace), indexOfSpace != cmd.length() ? cmd.substring(indexOfSpace + 1, cmd.length()).trim() : VOID_STR};
         try {
             cmdMap.get(splittedCmd[0]).func.apply(splittedCmd[1]);
         } catch (NullPointerException e) {
             System.out.println(CMD_NOT_FOUND);
+        } catch(Exception e) {
+            System.out.println("uncorrect command syntax");
         }
     }
 
